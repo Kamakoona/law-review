@@ -14,6 +14,7 @@ const statusEl = document.getElementById("status");
 const metaEl = document.getElementById("meta");
 const lawListEl = document.getElementById("law-list");
 const chips = document.getElementById("chips");
+const datetimeEl = document.getElementById("datetime");
 
 let latestOrdinances = [];
 let searchAbort = null;
@@ -407,4 +408,26 @@ if (params.get("q")) {
   input.value = params.get("q");
   const mode = params.get("matchMode");
   runSearch(params.get("q"), mode ? { matchMode: mode, skipCompoundAsk: true } : {});
+}
+
+if (datetimeEl) {
+  const dateFormatter = new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+
+  function updateDatetime() {
+    const now = new Date();
+    datetimeEl.textContent = dateFormatter.format(now);
+    datetimeEl.dateTime = now.toISOString();
+  }
+
+  updateDatetime();
+  setInterval(updateDatetime, 1000);
 }
