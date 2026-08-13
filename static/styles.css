@@ -103,6 +103,20 @@ body {
   letter-spacing: -0.02em;
 }
 
+.brand-title-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.9rem;
+}
+
+.datetime {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
 .source-link {
   color: var(--ink-soft);
   text-decoration: none;
