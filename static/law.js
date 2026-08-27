@@ -643,7 +643,14 @@ function setupPage() {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  runScopedSearch(input.value);
+  const q = input.value.trim();
+  if (!q) {
+    hideCompoundPrompt();
+    hideOrdinancePrompt();
+    runFullArticles();
+    return;
+  }
+  runScopedSearch(q);
 });
 
 chipsEl.addEventListener("click", (event) => {
